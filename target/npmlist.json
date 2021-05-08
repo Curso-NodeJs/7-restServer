@@ -1,1 +1,0 @@
-{"version":"1.0.0","name":"7-restServer","dependencies":{"cors":{"version":"2.8.5"},"dotenv":{"version":"8.2.0"},"express":{"version":"4.17.1"},"mongoose":{"version":"5.12.7"}}}
