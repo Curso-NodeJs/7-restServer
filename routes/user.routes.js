@@ -6,9 +6,8 @@ const { userGet,
        userDelete, 
        userPatch } = require('../controllers/user.controllers');
 const { esRoleValido, emailExiste, usuarioPorIdExiste } = require('../helpers/db-validators');
-const { validarCampos } = require('../middlewares/validar-campos');
-const validarJWT = require('../middlewares/validar-jwt');
 
+const { validarCampos,validarJWT, esAdminRole, tieneRol} = require('../middlewares/index')
 
 const router = Router();
 
@@ -37,6 +36,8 @@ router.post('/',
 router.delete('/:id',
               [
                 validarJWT,
+                // esAdminRole, <- en este midleware obligatoriamente debe ser administrador
+                tieneRol('ADMIN_ROLE','SALES_ROLE'),
                 check('id','No es un ID válido').isMongoId(),
                 check('id').custom( usuarioPorIdExiste ),
                 validarCampos,
