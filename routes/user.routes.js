@@ -11,9 +11,12 @@ const { validarCampos,validarJWT, esAdminRole, tieneRol} = require('../middlewar
 
 const router = Router();
 
-router.get('/', userGet );
+router.get('/', [
+  validarJWT,
+],userGet );
 
 router.put('/:id', [
+       validarJWT,
        check('id','No es un ID válido').isMongoId(),
        check('id').custom( usuarioPorIdExiste ),
        check('rol').custom( esRoleValido ),
@@ -23,6 +26,7 @@ router.put('/:id', [
 
 router.post('/', 
             [
+              validarJWT,
               check('nombre','El nombre es obligatorio').not().isEmpty(),
               check('password','El password es obligatorio y debe ser de minimo 6 caracteres').isLength({ min: 6 }),
               check('correo','El correo no es válido').isEmail(),
