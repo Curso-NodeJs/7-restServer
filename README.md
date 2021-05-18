@@ -13,6 +13,7 @@ heroku config:set MONGODB_CNN=
 heroku config:set SECRETORPRIVATEKEY=
 heroku config:set GOOGLE_CLIENT_ID=
 heroku config:set GOOGLE_SECRET_ID=
+heroku config:set CLOUDINARY_URL=
 
 # para ver los logs en heroku
 
